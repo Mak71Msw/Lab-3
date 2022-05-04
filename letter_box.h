@@ -4,6 +4,7 @@
 #pragma once
 
 #include "letter.h"
+#include <iostream>
 
 class letter;
 class fio;
@@ -12,27 +13,35 @@ class address;
 class letter_box {
 
 public:
-
     letter* MyARRAY;
 
     letter_box()
     {
-        MyARRAY = new letter[0];
+        MyARRAY = nullptr;
     }
 
-    void AddElement()
-    {
-        letter* tmp;
-        tmp = (letter*)std::realloc(MyARRAY, (letter::count + 1) * sizeof(letter));
-        if (tmp != nullptr)
+    void AddElement() {
+        if (letter::count == 0)
         {
-            MyARRAY = tmp;
-            Input(MyARRAY,letter::count);
+            MyARRAY = new letter[letter::count + 1];
+            Input(MyARRAY, letter::count);
             letter::count++;
         }
-        else
+        else if (letter::count != 0)
         {
-            std::cout << "Вопросы/Ответы по желанию"  << std::endl;
+            int c = letter::count + 1;
+            letter* tempObj = new letter[c];
+
+            letter::count = c - 1;
+
+            for (int i = 0; i < letter::count; i++) {
+                tempObj[i] = MyARRAY[i];
+            }
+            delete[] MyARRAY;
+            MyARRAY = tempObj;
+
+            Input(MyARRAY, letter::count);
+            letter::count++;
         }
     }
 

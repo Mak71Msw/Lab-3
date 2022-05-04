@@ -36,6 +36,7 @@ public:
            return false;
        }
     }
+    friend class letter;
 
     fio() {
         surname_recipient = "surname";

@@ -43,7 +43,7 @@ public:
     friend void Input(letter* Obj,int amount);
     friend void SearchSender(letter* Obj, int amount);
     friend void SearchRecipient(letter* Obj, int amount);
-    friend void SortedPrice(letter* &Obj, int amount);
+    friend void SortedPrice(letter* Obj, int amount);
     friend void SortedSender(letter* &Obj, int amount);
     friend void Save(letter* Obj, int amount, std::string filename);
     friend void Read(letter* &Obj, int amount, std::string filename);

@@ -2,6 +2,7 @@
 // Created by Максим Уланов on 02.05.2022.
 //
 #pragma once
+#include <iostream>
 
 class address {
 private:
@@ -33,6 +34,8 @@ public:
 
     }
 
+    friend class letter;
+
     address() {
         country = "country";
         city = "city";
@@ -40,9 +43,3 @@ public:
     }
     friend std::string full_address(address &Obj);
 };
-
-    std::string full_address(address &Obj) {
-        std::string address = "Country: " +Obj.GetCountry()+ "/ " +
-                               "City: " +Obj.GetCity()+ "/ " + "House: " +Obj.GetHouse();
-    return address;
-}

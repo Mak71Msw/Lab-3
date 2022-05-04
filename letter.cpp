@@ -3,19 +3,186 @@
 //
 
 #include "letter.h"
-#include "check.cpp"
 
+double CheckPrice()
+{
+    while (true)
+    {
+        std::cout << "Стоимость письма: ";
+        double a;
+        std::cin >> a;
+
+        if (std::cin.fail() or (a < 0))
+        {
+            std::cin.clear();
+            std::cin.ignore(32767,'\n');
+        }
+        else
+            return a;
+    }
+}
+
+std::string CheckCountry()
+{
+    int i;
+    std::string str;
+    do{
+        std::cout<<"Страна: ";
+        std::cin>>str;
+
+        for(i=0;str[i];i++)
+        {
+            if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+               or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+               or (str[i]<='~' and str[i]>='{'))
+                break;
+        }
+
+        if(str[i]) {
+            std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+        }
+
+    }while(str[i]);
+
+    return str;
+}
+
+std::string CheckCity()
+{
+    int i;
+    std::string str;
+    do{
+        std::cout<<"Город: ";
+        std::cin>>str;
+
+        for(i=0;str[i];i++)
+        {
+            if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+               or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+               or (str[i]<='~' and str[i]>='{'))
+                break;
+        }
+
+        if(str[i]) {
+            std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+        }
+
+    }while(str[i]);
+
+    return str;
+}
+
+std::string CheckHouse()
+{
+    int i;
+    std::string str;
+    do{
+        std::cout<<"Дом/Корпус: ";
+        std::cin>>str;
+
+        for(i=0;str[i];i++)
+        {
+            if((str[i]<='/' and str[i]>='!') or (str[i]<='@' and str[i]>=':')
+               or (str[i]<='`' and str[i]>='[') or (str[i]<='~' and str[i]>='{'))
+                break;
+        }
+
+        if(str[i]) {
+            std::cout << "У номера дома должна быть хотя бы одна цифра, буква корпуса по желанию!" << std::endl << "Повторите ввод!!!" << std::endl;
+        }
+
+    }while(str[i]);
+
+    return str;
+}
+
+std::string CheckSurname()
+{
+    int i;
+    std::string str;
+    do{
+        std::cout<<"Фамилия: ";
+        std::cin>>str;
+
+        for(i=0;str[i];i++)
+        {
+            if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+               or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+               or (str[i]<='~' and str[i]>='{'))
+                break;
+        }
+
+        if(str[i]) {
+            std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+        }
+
+    }while(str[i]);
+
+    return str;
+}
+
+std::string CheckName()
+{
+    int i;
+    std::string str;
+    do{
+        std::cout<<"Имя: ";
+        std::cin>>str;
+
+        for(i=0;str[i];i++)
+        {
+            if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+               or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+               or (str[i]<='~' and str[i]>='{'))
+                break;
+        }
+
+        if(str[i]) {
+            std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+        }
+
+    }while(str[i]);
+
+    return str;
+}
+
+std::string CheckPatronymic()
+{
+    int i;
+    std::string str;
+    do{
+        std::cout<<"Отчество: ";
+        std::cin>>str;
+
+        for(i=0;str[i];i++)
+        {
+            if((str[i]>='0' and str[i]<='9' and str[i]) or (str[i]<='/' and str[i]>='!')
+               or (str[i]<='@' and str[i]>=':') or (str[i]<='`' and str[i]>='[')
+               or (str[i]<='~' and str[i]>='{'))
+                break;
+        }
+
+        if(str[i]) {
+            std::cout << "Нужно вводить буквы!" << std::endl << "Повторите ввод!!!" << std::endl;
+        }
+    }while(str[i]);
+
+    return str;
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void Input(letter* Obj,int amount)
 {
+    std::cout << "Адрес получателя" << std::endl;
     Obj[amount].recipient.SetCountry(CheckCountry());
     Obj[amount].recipient.SetCity(CheckCity());
     Obj[amount].recipient.SetHouse(CheckHouse());
 
+    std::cout << "Адрес отправителя" << std::endl;
     Obj[amount].sender.SetCountry(CheckCountry());
     Obj[amount].sender.SetCity(CheckCity());
     Obj[amount].sender.SetHouse(CheckHouse());
 
+    std::cout << "ФИО получателя" << std::endl;
     Obj[amount].fio_recipient.SetSurname((CheckSurname()));
     Obj[amount].fio_recipient.SetName((CheckName()));
     Obj[amount].fio_recipient.SetPatronymic((CheckPatronymic()));
@@ -42,7 +209,7 @@ void SearchSender(letter* Obj, int amount)
     int d = Obj[0].fio_recipient.GetName().length()+2;
     int e = Obj[0].fio_recipient.GetPatronymic().length()+2;
 
-    for (int i = 0; i < letter::count - 1; i++) {
+    for (int i = 0; i < amount - 1; i++) {
         for (int j = i + 1; j < letter::count; j++) {
             if(Obj[j].recipient.GetCountry().length()+Obj[j].recipient.GetCity().length()+Obj[j].recipient.GetHouse().length()
                > Obj[i].recipient.GetCountry().length()+Obj[i].recipient.GetCity().length()+Obj[i].recipient.GetHouse().length()){
@@ -79,6 +246,8 @@ void SearchSender(letter* Obj, int amount)
     st.SetDelimRow(true, '-');
     st.SetDelimCol(true, '|');
 
+    st << "Address Recipient" << "Address Sender" << "Surname" << "Name" << "Patronymic" << "Price";
+
     bool no_any = true;
 
     for (int i = 0; i < amount; i++)
@@ -91,10 +260,9 @@ void SearchSender(letter* Obj, int amount)
             no_any= false;
         }
     }
+
     if (no_any)
     {
-        st << "country_recipient" << "city_recipient" << "house_recipient" << "country_sender"
-        << "city_sender" << "house_sender" << "surname"  << "name" << "patronymic" << "0.0";
         std::cout<<"Таких кентов тут нет"<<std::endl<<std::endl;
     }
 }
@@ -111,7 +279,7 @@ void SearchRecipient(letter* Obj, int amount)
     int d = Obj[0].fio_recipient.GetName().length()+2;
     int e = Obj[0].fio_recipient.GetPatronymic().length()+2;
 
-    for (int i = 0; i < letter::count - 1; i++) {
+    for (int i = 0; i < amount - 1; i++) {
         for (int j = i + 1; j < letter::count; j++) {
             if(Obj[j].recipient.GetCountry().length()+Obj[j].recipient.GetCity().length()+Obj[j].recipient.GetHouse().length()
                > Obj[i].recipient.GetCountry().length()+Obj[i].recipient.GetCity().length()+Obj[i].recipient.GetHouse().length()){
@@ -147,6 +315,8 @@ void SearchRecipient(letter* Obj, int amount)
     st.MakeBorderExt(true);
     st.SetDelimRow(true, '-');
     st.SetDelimCol(true, '|');
+
+    st << "Address Recipient" << "Address Sender" << "Surname" << "Name" << "Patronymic" << "Price";
 
     bool no_any = true;
 
@@ -160,27 +330,22 @@ void SearchRecipient(letter* Obj, int amount)
             no_any= false;
         }
     }
+
     if (no_any)
     {
-        st << "country_recipient" << "city_recipient" << "house_recipient" << "country_sender"
-           << "city_sender" << "house_sender" << "surname"  << "name" << "patronymic" << "0.0";
         std::cout<<"Таких кентов тут нет"<<std::endl<<std::endl;
     }
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-void SortedPrice(letter* &Obj, int amount)
+void SortedPrice(letter* Obj, int amount)
 {
-    letter tmp;
-
-    for (int i = 0; i < amount - 1; i++)
+    for (int i = 0; i < amount; i++)
     {
-        for (int j = 0; j < amount - i - 1; j++)
+        for (int j = amount - 1; j > i; j--)
         {
-            if (Obj[j].GetPrice() > Obj[j + 1].GetPrice())
+            if (Obj[j].GetPrice() < Obj[j - 1].GetPrice())
             {
-                tmp = Obj[j];
-                Obj[j] = Obj[j + 1];
-                Obj[j + 1] = tmp;
+                std::swap(Obj[j], Obj[j-1]);
             }
         }
     }
@@ -191,7 +356,7 @@ void SortedPrice(letter* &Obj, int amount)
     int d = Obj[0].fio_recipient.GetName().length()+2;
     int e = Obj[0].fio_recipient.GetPatronymic().length()+2;
 
-    for (int i = 0; i < letter::count - 1; i++) {
+    for (int i = 0; i < amount - 1; i++) {
         for (int j = i + 1; j < letter::count; j++) {
             if(Obj[j].recipient.GetCountry().length()+Obj[j].recipient.GetCity().length()+Obj[j].recipient.GetHouse().length()
                > Obj[i].recipient.GetCountry().length()+Obj[i].recipient.GetCity().length()+Obj[i].recipient.GetHouse().length()){
@@ -227,6 +392,8 @@ void SortedPrice(letter* &Obj, int amount)
     st.MakeBorderExt(true);
     st.SetDelimRow(true, '-');
     st.SetDelimCol(true, '|');
+
+    st << "Address Recipient" << "Address Sender" << "Surname" << "Name" << "Patronymic" << "Price";
 
     for (int i = 0; i < amount; i++)
         {
@@ -255,7 +422,7 @@ void SortedSender(letter* &Obj, int amount)
     int d = Obj[0].fio_recipient.GetName().length()+2;
     int e = Obj[0].fio_recipient.GetPatronymic().length()+2;
 
-    for (int i = 0; i < letter::count - 1; i++) {
+    for (int i = 0; i < amount - 1; i++) {
         for (int j = i + 1; j < letter::count; j++) {
             if(Obj[j].recipient.GetCountry().length()+Obj[j].recipient.GetCity().length()+Obj[j].recipient.GetHouse().length()
                > Obj[i].recipient.GetCountry().length()+Obj[i].recipient.GetCity().length()+Obj[i].recipient.GetHouse().length()){
@@ -291,6 +458,8 @@ void SortedSender(letter* &Obj, int amount)
     st.MakeBorderExt(true);
     st.SetDelimRow(true, '-');
     st.SetDelimCol(true, '|');
+
+    st << "Address Recipient" << "Address Sender" << "Surname" << "Name" << "Patronymic" << "Price";
 
     for (int i = 0; i < amount; i++)
     {
@@ -340,11 +509,9 @@ void Read(letter* &Obj, int amount, std::string filename)
     amount=count-1;
     myfile.close();
 
-
     std::ifstream reading(filename);
     if (reading)
     {
-
         Obj = new letter[amount];
 
         for (int i = 0; i<amount; i++)
