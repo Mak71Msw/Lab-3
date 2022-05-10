@@ -5,12 +5,11 @@
 #include <iostream>
 
 class address {
-private:
+public:
     std::string country;
     std::string city;
     std::string house;
 
-public:
     std::string GetCountry() { return country; };
 
     std::string GetCity() { return city; };
@@ -28,11 +27,6 @@ public:
     void SetHouse(std::string new_house) {
         house = new_house;
     }
-
-//    bool operator ! () const
-//    {
-//
-//    }
 
     friend class letter;
 

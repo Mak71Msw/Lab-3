@@ -267,6 +267,12 @@ void SearchSender(letter* Obj, int amount)
     }
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+bool operator== (fio &c1, fio &c2)
+{
+    return (c1.surname_recipient == c2.surname_recipient);
+}
+
 void SearchRecipient(letter* Obj, int amount)
 {
     std::string k;

@@ -23,19 +23,6 @@ public:
         patronymic_recipient = new_patronymic;
     }
 
-    bool operator == (const fio &c1) const
-    {
-       if(surname_recipient == c1.surname_recipient)
-       {
-           std::cout<< "С кайфом"<< std::endl;
-           return true;
-       }
-       else
-       {
-           std::cout << "Ноу буено" << std::endl;
-           return false;
-       }
-    }
     friend class letter;
 
     fio() {
