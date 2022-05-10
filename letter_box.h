@@ -29,10 +29,9 @@ public:
         }
         else if (letter::count != 0)
         {
-            int c = letter::count + 1;
+            int c = letter::count;
             letter* tempObj = new letter[c];
-
-            letter::count = c - 1;
+            letter::count = c;
 
             for (int i = 0; i < letter::count; i++) {
                 tempObj[i] = MyARRAY[i];

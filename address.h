@@ -29,10 +29,10 @@ public:
         house = new_house;
     }
 
-    bool operator ! () const
-    {
-
-    }
+//    bool operator ! () const
+//    {
+//
+//    }
 
     friend class letter;
 
